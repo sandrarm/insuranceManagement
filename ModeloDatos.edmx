@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="segurosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AJUSTADOR">
+          <Key>
+            <PropertyRef Name="id_persona" />
+          </Key>
+          <Property Name="id_persona" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="hora_ent" Type="time" Precision="7" Nullable="false" />
+          <Property Name="hora_sal" Type="time" Precision="7" Nullable="false" />
+          <Property Name="cve_zona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AUTO">
+          <Key>
+            <PropertyRef Name="placas" />
+          </Key>
+          <Property Name="placas" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="submarca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="año" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EDOREPARACION">
+          <Key>
+            <PropertyRef Name="cve_edo_repa" />
+          </Key>
+          <Property Name="cve_edo_repa" Type="int" Nullable="false" />
+          <Property Name="desc_edo_repa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GRAVEDADLESIONES">
+          <Key>
+            <PropertyRef Name="cve_grave_les" />
+          </Key>
+          <Property Name="cve_grave_les" Type="int" Nullable="false" />
+          <Property Name="desc_grave_les" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDEN">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="int" Nullable="false" />
+          <Property Name="taller" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fec_ent" Type="date" />
+          <Property Name="cve_edo_repa" Type="int" Nullable="false" />
+          <Property Name="id_siniestro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERSONA">
+          <Key>
+            <PropertyRef Name="id_persona" />
+          </Key>
+          <Property Name="id_persona" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ape_pat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ape_mat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cp" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numero" Type="smallint" Nullable="false" />
+          <Property Name="colonia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="delegacion" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cve_tipo_usu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POLIZA">
+          <Key>
+            <PropertyRef Name="num_poliza" />
+          </Key>
+          <Property Name="num_poliza" Type="int" Nullable="false" />
+          <Property Name="id_persona" Type="int" Nullable="false" />
+          <Property Name="placas" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="polizaseg" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SINIESTRO">
+          <Key>
+            <PropertyRef Name="id_siniestro" />
+          </Key>
+          <Property Name="id_siniestro" Type="int" Nullable="false" />
+          <Property Name="edo_chofer" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="condi_clima" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="condi_terreno" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="importe" Type="numeric" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="video" Type="varchar" MaxLength="255" />
+          <Property Name="cp" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numero" Type="smallint" Nullable="false" />
+          <Property Name="colonia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="delegacion" Type="varchar" MaxLength="50" />
+          <Property Name="tipo_accidente" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="num_lesionado" Type="smallint" Nullable="false" />
+          <Property Name="cve_grave_les" Type="int" Nullable="false" />
+          <Property Name="num_poliza" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPOUSUARIO">
+          <Key>
+            <PropertyRef Name="cve_tipo_usu" />
+          </Key>
+          <Property Name="cve_tipo_usu" Type="int" Nullable="false" />
+          <Property Name="desc_tipo_usu" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZONALABORAL">
+          <Key>
+            <PropertyRef Name="cve_zona" />
+          </Key>
+          <Property Name="cve_zona" Type="int" Nullable="false" />
+          <Property Name="desc_zona" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AJUSTADOR__cve_z__20C1E124">
+          <End Role="ZONALABORAL" Type="Self.ZONALABORAL" Multiplicity="1" />
+          <End Role="AJUSTADOR" Type="Self.AJUSTADOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONALABORAL">
+              <PropertyRef Name="cve_zona" />
+            </Principal>
+            <Dependent Role="AJUSTADOR">
+              <PropertyRef Name="cve_zona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AJUSTADOR__id_pe__1FCDBCEB">
+          <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="1" />
+          <End Role="AJUSTADOR" Type="Self.AJUSTADOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="AJUSTADOR">
+              <PropertyRef Name="id_persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDEN__cve_edo_r__2B3F6F97">
+          <End Role="EDOREPARACION" Type="Self.EDOREPARACION" Multiplicity="1" />
+          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EDOREPARACION">
+              <PropertyRef Name="cve_edo_repa" />
+            </Principal>
+            <Dependent Role="ORDEN">
+              <PropertyRef Name="cve_edo_repa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDEN__id_sinies__2C3393D0">
+          <End Role="SINIESTRO" Type="Self.SINIESTRO" Multiplicity="1" />
+          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINIESTRO">
+              <PropertyRef Name="id_siniestro" />
+            </Principal>
+            <Dependent Role="ORDEN">
+              <PropertyRef Name="id_siniestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERSONA__cve_tip__1CF15040">
+          <End Role="TIPOUSUARIO" Type="Self.TIPOUSUARIO" Multiplicity="1" />
+          <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOUSUARIO">
+              <PropertyRef Name="cve_tipo_usu" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="cve_tipo_usu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POLIZA__id_perso__24927208">
+          <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="1" />
+          <End Role="POLIZA" Type="Self.POLIZA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="POLIZA">
+              <PropertyRef Name="id_persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POLIZA__placas__239E4DCF">
+          <End Role="AUTO" Type="Self.AUTO" Multiplicity="1" />
+          <End Role="POLIZA" Type="Self.POLIZA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTO">
+              <PropertyRef Name="placas" />
+            </Principal>
+            <Dependent Role="POLIZA">
+              <PropertyRef Name="placas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINIESTRO__cve_g__276EDEB3">
+          <End Role="GRAVEDADLESIONES" Type="Self.GRAVEDADLESIONES" Multiplicity="1" />
+          <End Role="SINIESTRO" Type="Self.SINIESTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRAVEDADLESIONES">
+              <PropertyRef Name="cve_grave_les" />
+            </Principal>
+            <Dependent Role="SINIESTRO">
+              <PropertyRef Name="cve_grave_les" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINIESTRO__num_p__286302EC">
+          <End Role="POLIZA" Type="Self.POLIZA" Multiplicity="1" />
+          <End Role="SINIESTRO" Type="Self.SINIESTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POLIZA">
+              <PropertyRef Name="num_poliza" />
+            </Principal>
+            <Dependent Role="SINIESTRO">
+              <PropertyRef Name="num_poliza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="segurosModelStoreContainer">
+          <EntitySet Name="AJUSTADOR" EntityType="Self.AJUSTADOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AUTO" EntityType="Self.AUTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EDOREPARACION" EntityType="Self.EDOREPARACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRAVEDADLESIONES" EntityType="Self.GRAVEDADLESIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDEN" EntityType="Self.ORDEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONA" EntityType="Self.PERSONA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POLIZA" EntityType="Self.POLIZA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SINIESTRO" EntityType="Self.SINIESTRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOUSUARIO" EntityType="Self.TIPOUSUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZONALABORAL" EntityType="Self.ZONALABORAL" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AJUSTADOR__cve_z__20C1E124" Association="Self.FK__AJUSTADOR__cve_z__20C1E124">
+            <End Role="ZONALABORAL" EntitySet="ZONALABORAL" />
+            <End Role="AJUSTADOR" EntitySet="AJUSTADOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AJUSTADOR__id_pe__1FCDBCEB" Association="Self.FK__AJUSTADOR__id_pe__1FCDBCEB">
+            <End Role="PERSONA" EntitySet="PERSONA" />
+            <End Role="AJUSTADOR" EntitySet="AJUSTADOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDEN__cve_edo_r__2B3F6F97" Association="Self.FK__ORDEN__cve_edo_r__2B3F6F97">
+            <End Role="EDOREPARACION" EntitySet="EDOREPARACION" />
+            <End Role="ORDEN" EntitySet="ORDEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDEN__id_sinies__2C3393D0" Association="Self.FK__ORDEN__id_sinies__2C3393D0">
+            <End Role="SINIESTRO" EntitySet="SINIESTRO" />
+            <End Role="ORDEN" EntitySet="ORDEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERSONA__cve_tip__1CF15040" Association="Self.FK__PERSONA__cve_tip__1CF15040">
+            <End Role="TIPOUSUARIO" EntitySet="TIPOUSUARIO" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POLIZA__id_perso__24927208" Association="Self.FK__POLIZA__id_perso__24927208">
+            <End Role="PERSONA" EntitySet="PERSONA" />
+            <End Role="POLIZA" EntitySet="POLIZA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POLIZA__placas__239E4DCF" Association="Self.FK__POLIZA__placas__239E4DCF">
+            <End Role="AUTO" EntitySet="AUTO" />
+            <End Role="POLIZA" EntitySet="POLIZA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINIESTRO__cve_g__276EDEB3" Association="Self.FK__SINIESTRO__cve_g__276EDEB3">
+            <End Role="GRAVEDADLESIONES" EntitySet="GRAVEDADLESIONES" />
+            <End Role="SINIESTRO" EntitySet="SINIESTRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINIESTRO__num_p__286302EC" Association="Self.FK__SINIESTRO__num_p__286302EC">
+            <End Role="POLIZA" EntitySet="POLIZA" />
+            <End Role="SINIESTRO" EntitySet="SINIESTRO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="segurosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AJUSTADOR">
+          <Key>
+            <PropertyRef Name="id_persona" />
+          </Key>
+          <Property Name="id_persona" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hora_ent" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="hora_sal" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="cve_zona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ZONALABORAL" Relationship="Self.FK__AJUSTADOR__cve_z__20C1E124" FromRole="AJUSTADOR" ToRole="ZONALABORAL" />
+          <NavigationProperty Name="PERSONA" Relationship="Self.FK__AJUSTADOR__id_pe__1FCDBCEB" FromRole="AJUSTADOR" ToRole="PERSONA" />
+        </EntityType>
+        <EntityType Name="AUTO">
+          <Key>
+            <PropertyRef Name="placas" />
+          </Key>
+          <Property Name="placas" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="submarca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="año" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="POLIZAs" Relationship="segurosModel.FK__POLIZA__placas__239E4DCF" FromRole="AUTO" ToRole="POLIZA" />
+        </EntityType>
+        <EntityType Name="EDOREPARACION">
+          <Key>
+            <PropertyRef Name="cve_edo_repa" />
+          </Key>
+          <Property Name="cve_edo_repa" Type="Int32" Nullable="false" />
+          <Property Name="desc_edo_repa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ORDENs" Relationship="Self.FK__ORDEN__cve_edo_r__2B3F6F97" FromRole="EDOREPARACION" ToRole="ORDEN" />
+        </EntityType>
+        <EntityType Name="GRAVEDADLESIONE">
+          <Key>
+            <PropertyRef Name="cve_grave_les" />
+          </Key>
+          <Property Name="cve_grave_les" Type="Int32" Nullable="false" />
+          <Property Name="desc_grave_les" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SINIESTROes" Relationship="Self.FK__SINIESTRO__cve_g__276EDEB3" FromRole="GRAVEDADLESIONES" ToRole="SINIESTRO" />
+        </EntityType>
+        <EntityType Name="ORDEN">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="Int32" Nullable="false" />
+          <Property Name="taller" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fec_ent" Type="DateTime" Precision="0" />
+          <Property Name="cve_edo_repa" Type="Int32" Nullable="false" />
+          <Property Name="id_siniestro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EDOREPARACION" Relationship="Self.FK__ORDEN__cve_edo_r__2B3F6F97" FromRole="ORDEN" ToRole="EDOREPARACION" />
+          <NavigationProperty Name="SINIESTRO" Relationship="Self.FK__ORDEN__id_sinies__2C3393D0" FromRole="ORDEN" ToRole="SINIESTRO" />
+        </EntityType>
+        <EntityType Name="PERSONA">
+          <Key>
+            <PropertyRef Name="id_persona" />
+          </Key>
+          <Property Name="id_persona" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ape_pat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ape_mat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero" Type="Int16" Nullable="false" />
+          <Property Name="colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="delegacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cve_tipo_usu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AJUSTADOR" Relationship="Self.FK__AJUSTADOR__id_pe__1FCDBCEB" FromRole="PERSONA" ToRole="AJUSTADOR" />
+          <NavigationProperty Name="TIPOUSUARIO" Relationship="Self.FK__PERSONA__cve_tip__1CF15040" FromRole="PERSONA" ToRole="TIPOUSUARIO" />
+          <NavigationProperty Name="POLIZAs" Relationship="segurosModel.FK__POLIZA__id_perso__24927208" FromRole="PERSONA" ToRole="POLIZA" />
+        </EntityType>
+        <EntityType Name="SINIESTRO">
+          <Key>
+            <PropertyRef Name="id_siniestro" />
+          </Key>
+          <Property Name="id_siniestro" Type="Int32" Nullable="false" />
+          <Property Name="edo_chofer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="condi_clima" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="condi_terreno" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="importe" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="video" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero" Type="Int16" Nullable="false" />
+          <Property Name="colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="delegacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_accidente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="num_lesionado" Type="Int16" Nullable="false" />
+          <Property Name="cve_grave_les" Type="Int32" Nullable="false" />
+          <Property Name="num_poliza" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GRAVEDADLESIONE" Relationship="Self.FK__SINIESTRO__cve_g__276EDEB3" FromRole="SINIESTRO" ToRole="GRAVEDADLESIONES" />
+          <NavigationProperty Name="ORDENs" Relationship="Self.FK__ORDEN__id_sinies__2C3393D0" FromRole="SINIESTRO" ToRole="ORDEN" />
+          <NavigationProperty Name="POLIZA" Relationship="segurosModel.FK__SINIESTRO__num_p__286302EC" FromRole="SINIESTRO" ToRole="POLIZA" />
+        </EntityType>
+        <EntityType Name="TIPOUSUARIO">
+          <Key>
+            <PropertyRef Name="cve_tipo_usu" />
+          </Key>
+          <Property Name="cve_tipo_usu" Type="Int32" Nullable="false" />
+          <Property Name="desc_tipo_usu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PERSONAs" Relationship="Self.FK__PERSONA__cve_tip__1CF15040" FromRole="TIPOUSUARIO" ToRole="PERSONA" />
+        </EntityType>
+        <EntityType Name="ZONALABORAL">
+          <Key>
+            <PropertyRef Name="cve_zona" />
+          </Key>
+          <Property Name="cve_zona" Type="Int32" Nullable="false" />
+          <Property Name="desc_zona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AJUSTADORs" Relationship="Self.FK__AJUSTADOR__cve_z__20C1E124" FromRole="ZONALABORAL" ToRole="AJUSTADOR" />
+        </EntityType>
+        <Association Name="FK__AJUSTADOR__cve_z__20C1E124">
+          <End Role="ZONALABORAL" Type="Self.ZONALABORAL" Multiplicity="1" />
+          <End Role="AJUSTADOR" Type="Self.AJUSTADOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONALABORAL">
+              <PropertyRef Name="cve_zona" />
+            </Principal>
+            <Dependent Role="AJUSTADOR">
+              <PropertyRef Name="cve_zona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AJUSTADOR__id_pe__1FCDBCEB">
+          <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="1" />
+          <End Role="AJUSTADOR" Type="Self.AJUSTADOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="AJUSTADOR">
+              <PropertyRef Name="id_persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDEN__cve_edo_r__2B3F6F97">
+          <End Role="EDOREPARACION" Type="Self.EDOREPARACION" Multiplicity="1" />
+          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EDOREPARACION">
+              <PropertyRef Name="cve_edo_repa" />
+            </Principal>
+            <Dependent Role="ORDEN">
+              <PropertyRef Name="cve_edo_repa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINIESTRO__cve_g__276EDEB3">
+          <End Role="GRAVEDADLESIONES" Type="Self.GRAVEDADLESIONE" Multiplicity="1" />
+          <End Role="SINIESTRO" Type="Self.SINIESTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRAVEDADLESIONES">
+              <PropertyRef Name="cve_grave_les" />
+            </Principal>
+            <Dependent Role="SINIESTRO">
+              <PropertyRef Name="cve_grave_les" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDEN__id_sinies__2C3393D0">
+          <End Role="SINIESTRO" Type="Self.SINIESTRO" Multiplicity="1" />
+          <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINIESTRO">
+              <PropertyRef Name="id_siniestro" />
+            </Principal>
+            <Dependent Role="ORDEN">
+              <PropertyRef Name="id_siniestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERSONA__cve_tip__1CF15040">
+          <End Role="TIPOUSUARIO" Type="Self.TIPOUSUARIO" Multiplicity="1" />
+          <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOUSUARIO">
+              <PropertyRef Name="cve_tipo_usu" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="cve_tipo_usu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="segurosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AJUSTADORs" EntityType="Self.AJUSTADOR" />
+          <EntitySet Name="AUTOes" EntityType="Self.AUTO" />
+          <EntitySet Name="EDOREPARACIONs" EntityType="Self.EDOREPARACION" />
+          <EntitySet Name="GRAVEDADLESIONES" EntityType="Self.GRAVEDADLESIONE" />
+          <EntitySet Name="ORDENs" EntityType="Self.ORDEN" />
+          <EntitySet Name="PERSONAs" EntityType="Self.PERSONA" />
+          <EntitySet Name="SINIESTROes" EntityType="Self.SINIESTRO" />
+          <EntitySet Name="TIPOUSUARIOs" EntityType="Self.TIPOUSUARIO" />
+          <EntitySet Name="ZONALABORALs" EntityType="Self.ZONALABORAL" />
+          <AssociationSet Name="FK__AJUSTADOR__cve_z__20C1E124" Association="Self.FK__AJUSTADOR__cve_z__20C1E124">
+            <End Role="ZONALABORAL" EntitySet="ZONALABORALs" />
+            <End Role="AJUSTADOR" EntitySet="AJUSTADORs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AJUSTADOR__id_pe__1FCDBCEB" Association="Self.FK__AJUSTADOR__id_pe__1FCDBCEB">
+            <End Role="PERSONA" EntitySet="PERSONAs" />
+            <End Role="AJUSTADOR" EntitySet="AJUSTADORs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDEN__cve_edo_r__2B3F6F97" Association="Self.FK__ORDEN__cve_edo_r__2B3F6F97">
+            <End Role="EDOREPARACION" EntitySet="EDOREPARACIONs" />
+            <End Role="ORDEN" EntitySet="ORDENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINIESTRO__cve_g__276EDEB3" Association="Self.FK__SINIESTRO__cve_g__276EDEB3">
+            <End Role="GRAVEDADLESIONES" EntitySet="GRAVEDADLESIONES" />
+            <End Role="SINIESTRO" EntitySet="SINIESTROes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDEN__id_sinies__2C3393D0" Association="Self.FK__ORDEN__id_sinies__2C3393D0">
+            <End Role="SINIESTRO" EntitySet="SINIESTROes" />
+            <End Role="ORDEN" EntitySet="ORDENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERSONA__cve_tip__1CF15040" Association="Self.FK__PERSONA__cve_tip__1CF15040">
+            <End Role="TIPOUSUARIO" EntitySet="TIPOUSUARIOs" />
+            <End Role="PERSONA" EntitySet="PERSONAs" />
+          </AssociationSet>
+          <EntitySet Name="POLIZAs" EntityType="segurosModel.POLIZA" />
+          <AssociationSet Name="FK__POLIZA__placas__239E4DCF" Association="segurosModel.FK__POLIZA__placas__239E4DCF">
+            <End Role="AUTO" EntitySet="AUTOes" />
+            <End Role="POLIZA" EntitySet="POLIZAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POLIZA__id_perso__24927208" Association="segurosModel.FK__POLIZA__id_perso__24927208">
+            <End Role="PERSONA" EntitySet="PERSONAs" />
+            <End Role="POLIZA" EntitySet="POLIZAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINIESTRO__num_p__286302EC" Association="segurosModel.FK__SINIESTRO__num_p__286302EC">
+            <End Role="POLIZA" EntitySet="POLIZAs" />
+            <End Role="SINIESTRO" EntitySet="SINIESTROes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="POLIZA">
+          <Key>
+            <PropertyRef Name="num_poliza" />
+          </Key>
+          <Property Name="num_poliza" Type="Int32" Nullable="false" />
+          <Property Name="id_persona" Type="Int32" Nullable="false" />
+          <Property Name="placas" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="polizaseg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AUTO" Relationship="segurosModel.FK__POLIZA__placas__239E4DCF" FromRole="POLIZA" ToRole="AUTO" />
+          <NavigationProperty Name="PERSONA" Relationship="segurosModel.FK__POLIZA__id_perso__24927208" FromRole="POLIZA" ToRole="PERSONA" />
+          <NavigationProperty Name="SINIESTROes" Relationship="segurosModel.FK__SINIESTRO__num_p__286302EC" FromRole="POLIZA" ToRole="SINIESTRO" />
+        </EntityType>
+        <Association Name="FK__POLIZA__placas__239E4DCF">
+          <End Type="segurosModel.AUTO" Role="AUTO" Multiplicity="1" />
+          <End Type="segurosModel.POLIZA" Role="POLIZA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTO">
+              <PropertyRef Name="placas" />
+            </Principal>
+            <Dependent Role="POLIZA">
+              <PropertyRef Name="placas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POLIZA__id_perso__24927208">
+          <End Type="segurosModel.PERSONA" Role="PERSONA" Multiplicity="1" />
+          <End Type="segurosModel.POLIZA" Role="POLIZA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="POLIZA">
+              <PropertyRef Name="id_persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINIESTRO__num_p__286302EC">
+          <End Type="segurosModel.POLIZA" Role="POLIZA" Multiplicity="1" />
+          <End Type="segurosModel.SINIESTRO" Role="SINIESTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POLIZA">
+              <PropertyRef Name="num_poliza" />
+            </Principal>
+            <Dependent Role="SINIESTRO">
+              <PropertyRef Name="num_poliza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="segurosModelStoreContainer" CdmEntityContainer="segurosEntities">
+          <EntitySetMapping Name="AJUSTADORs">
+            <EntityTypeMapping TypeName="segurosModel.AJUSTADOR">
+              <MappingFragment StoreEntitySet="AJUSTADOR">
+                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="hora_ent" ColumnName="hora_ent" />
+                <ScalarProperty Name="hora_sal" ColumnName="hora_sal" />
+                <ScalarProperty Name="cve_zona" ColumnName="cve_zona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AUTOes">
+            <EntityTypeMapping TypeName="segurosModel.AUTO">
+              <MappingFragment StoreEntitySet="AUTO">
+                <ScalarProperty Name="placas" ColumnName="placas" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="submarca" ColumnName="submarca" />
+                <ScalarProperty Name="año" ColumnName="año" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EDOREPARACIONs">
+            <EntityTypeMapping TypeName="segurosModel.EDOREPARACION">
+              <MappingFragment StoreEntitySet="EDOREPARACION">
+                <ScalarProperty Name="cve_edo_repa" ColumnName="cve_edo_repa" />
+                <ScalarProperty Name="desc_edo_repa" ColumnName="desc_edo_repa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRAVEDADLESIONES">
+            <EntityTypeMapping TypeName="segurosModel.GRAVEDADLESIONE">
+              <MappingFragment StoreEntitySet="GRAVEDADLESIONES">
+                <ScalarProperty Name="cve_grave_les" ColumnName="cve_grave_les" />
+                <ScalarProperty Name="desc_grave_les" ColumnName="desc_grave_les" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDENs">
+            <EntityTypeMapping TypeName="segurosModel.ORDEN">
+              <MappingFragment StoreEntitySet="ORDEN">
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
+                <ScalarProperty Name="taller" ColumnName="taller" />
+                <ScalarProperty Name="fec_ent" ColumnName="fec_ent" />
+                <ScalarProperty Name="cve_edo_repa" ColumnName="cve_edo_repa" />
+                <ScalarProperty Name="id_siniestro" ColumnName="id_siniestro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSONAs">
+            <EntityTypeMapping TypeName="segurosModel.PERSONA">
+              <MappingFragment StoreEntitySet="PERSONA">
+                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ape_pat" ColumnName="ape_pat" />
+                <ScalarProperty Name="ape_mat" ColumnName="ape_mat" />
+                <ScalarProperty Name="cp" ColumnName="cp" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="cve_tipo_usu" ColumnName="cve_tipo_usu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SINIESTROes">
+            <EntityTypeMapping TypeName="segurosModel.SINIESTRO">
+              <MappingFragment StoreEntitySet="SINIESTRO">
+                <ScalarProperty Name="id_siniestro" ColumnName="id_siniestro" />
+                <ScalarProperty Name="edo_chofer" ColumnName="edo_chofer" />
+                <ScalarProperty Name="condi_clima" ColumnName="condi_clima" />
+                <ScalarProperty Name="condi_terreno" ColumnName="condi_terreno" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="video" ColumnName="video" />
+                <ScalarProperty Name="cp" ColumnName="cp" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+                <ScalarProperty Name="tipo_accidente" ColumnName="tipo_accidente" />
+                <ScalarProperty Name="num_lesionado" ColumnName="num_lesionado" />
+                <ScalarProperty Name="cve_grave_les" ColumnName="cve_grave_les" />
+                <ScalarProperty Name="num_poliza" ColumnName="num_poliza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOUSUARIOs">
+            <EntityTypeMapping TypeName="segurosModel.TIPOUSUARIO">
+              <MappingFragment StoreEntitySet="TIPOUSUARIO">
+                <ScalarProperty Name="cve_tipo_usu" ColumnName="cve_tipo_usu" />
+                <ScalarProperty Name="desc_tipo_usu" ColumnName="desc_tipo_usu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZONALABORALs">
+            <EntityTypeMapping TypeName="segurosModel.ZONALABORAL">
+              <MappingFragment StoreEntitySet="ZONALABORAL">
+                <ScalarProperty Name="cve_zona" ColumnName="cve_zona" />
+                <ScalarProperty Name="desc_zona" ColumnName="desc_zona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLIZAs">
+            <EntityTypeMapping TypeName="segurosModel.POLIZA">
+              <MappingFragment StoreEntitySet="POLIZA">
+                <ScalarProperty Name="polizaseg" ColumnName="polizaseg" />
+                <ScalarProperty Name="placas" ColumnName="placas" />
+                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+                <ScalarProperty Name="num_poliza" ColumnName="num_poliza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

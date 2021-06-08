@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace SistemaSeguros.ClasesNegocio
+{
+    public class Acceso
+    {
+
+        segurosEntities entidad = new segurosEntities();
+        PERSONA persona = new PERSONA();
+
+        public bool Login(string usuario, string contrasena) {
+
+            persona = entidad.PERSONAs.Where(b => b.usuario == usuario && b.contraseña == contrasena)
+                    .FirstOrDefault();
+            if (persona == null)
+                return false;
+            else
+                return true;
+        }
+    }
+}

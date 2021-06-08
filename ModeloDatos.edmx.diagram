@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5c13fa10bdb747c1b47cd37d92801792" Name="Diagram1">
+        <EntityTypeShape EntityType="segurosModel.AJUSTADOR" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.AUTO" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.EDOREPARACION" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.GRAVEDADLESIONE" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.ORDEN" Width="1.5" PointX="9.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.PERSONA" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.SINIESTRO" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.TIPOUSUARIO" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="segurosModel.ZONALABORAL" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="segurosModel.FK__AJUSTADOR__cve_z__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="segurosModel.FK__AJUSTADOR__id_pe__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="segurosModel.FK__ORDEN__cve_edo_r__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="segurosModel.FK__SINIESTRO__cve_g__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="segurosModel.FK__ORDEN__id_sinies__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="segurosModel.FK__PERSONA__cve_tip__1CF15040" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="segurosModel.POLIZA" Width="1.5" PointX="5.25" PointY="1.375" />
+        <AssociationConnector Association="segurosModel.FK__POLIZA__placas__239E4DCF" />
+        <AssociationConnector Association="segurosModel.FK__POLIZA__id_perso__24927208" />
+        <AssociationConnector Association="segurosModel.FK__SINIESTRO__num_p__286302EC" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

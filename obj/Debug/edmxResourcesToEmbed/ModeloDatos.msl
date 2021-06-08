@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="segurosModelStoreContainer" CdmEntityContainer="segurosEntities">
+    <EntitySetMapping Name="AJUSTADORs">
+      <EntityTypeMapping TypeName="segurosModel.AJUSTADOR">
+        <MappingFragment StoreEntitySet="AJUSTADOR">
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="hora_ent" ColumnName="hora_ent" />
+          <ScalarProperty Name="hora_sal" ColumnName="hora_sal" />
+          <ScalarProperty Name="cve_zona" ColumnName="cve_zona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AUTOes">
+      <EntityTypeMapping TypeName="segurosModel.AUTO">
+        <MappingFragment StoreEntitySet="AUTO">
+          <ScalarProperty Name="placas" ColumnName="placas" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="submarca" ColumnName="submarca" />
+          <ScalarProperty Name="año" ColumnName="año" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EDOREPARACIONs">
+      <EntityTypeMapping TypeName="segurosModel.EDOREPARACION">
+        <MappingFragment StoreEntitySet="EDOREPARACION">
+          <ScalarProperty Name="cve_edo_repa" ColumnName="cve_edo_repa" />
+          <ScalarProperty Name="desc_edo_repa" ColumnName="desc_edo_repa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GRAVEDADLESIONES">
+      <EntityTypeMapping TypeName="segurosModel.GRAVEDADLESIONE">
+        <MappingFragment StoreEntitySet="GRAVEDADLESIONES">
+          <ScalarProperty Name="cve_grave_les" ColumnName="cve_grave_les" />
+          <ScalarProperty Name="desc_grave_les" ColumnName="desc_grave_les" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDENs">
+      <EntityTypeMapping TypeName="segurosModel.ORDEN">
+        <MappingFragment StoreEntitySet="ORDEN">
+          <ScalarProperty Name="id_orden" ColumnName="id_orden" />
+          <ScalarProperty Name="taller" ColumnName="taller" />
+          <ScalarProperty Name="fec_ent" ColumnName="fec_ent" />
+          <ScalarProperty Name="cve_edo_repa" ColumnName="cve_edo_repa" />
+          <ScalarProperty Name="id_siniestro" ColumnName="id_siniestro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONAs">
+      <EntityTypeMapping TypeName="segurosModel.PERSONA">
+        <MappingFragment StoreEntitySet="PERSONA">
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ape_pat" ColumnName="ape_pat" />
+          <ScalarProperty Name="ape_mat" ColumnName="ape_mat" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="cve_tipo_usu" ColumnName="cve_tipo_usu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SINIESTROes">
+      <EntityTypeMapping TypeName="segurosModel.SINIESTRO">
+        <MappingFragment StoreEntitySet="SINIESTRO">
+          <ScalarProperty Name="id_siniestro" ColumnName="id_siniestro" />
+          <ScalarProperty Name="edo_chofer" ColumnName="edo_chofer" />
+          <ScalarProperty Name="condi_clima" ColumnName="condi_clima" />
+          <ScalarProperty Name="condi_terreno" ColumnName="condi_terreno" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="video" ColumnName="video" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+          <ScalarProperty Name="tipo_accidente" ColumnName="tipo_accidente" />
+          <ScalarProperty Name="num_lesionado" ColumnName="num_lesionado" />
+          <ScalarProperty Name="cve_grave_les" ColumnName="cve_grave_les" />
+          <ScalarProperty Name="num_poliza" ColumnName="num_poliza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOUSUARIOs">
+      <EntityTypeMapping TypeName="segurosModel.TIPOUSUARIO">
+        <MappingFragment StoreEntitySet="TIPOUSUARIO">
+          <ScalarProperty Name="cve_tipo_usu" ColumnName="cve_tipo_usu" />
+          <ScalarProperty Name="desc_tipo_usu" ColumnName="desc_tipo_usu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZONALABORALs">
+      <EntityTypeMapping TypeName="segurosModel.ZONALABORAL">
+        <MappingFragment StoreEntitySet="ZONALABORAL">
+          <ScalarProperty Name="cve_zona" ColumnName="cve_zona" />
+          <ScalarProperty Name="desc_zona" ColumnName="desc_zona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POLIZAs">
+      <EntityTypeMapping TypeName="segurosModel.POLIZA">
+        <MappingFragment StoreEntitySet="POLIZA">
+          <ScalarProperty Name="polizaseg" ColumnName="polizaseg" />
+          <ScalarProperty Name="placas" ColumnName="placas" />
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+          <ScalarProperty Name="num_poliza" ColumnName="num_poliza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
